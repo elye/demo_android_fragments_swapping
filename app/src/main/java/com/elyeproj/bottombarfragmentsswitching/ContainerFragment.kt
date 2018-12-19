@@ -41,7 +41,7 @@ class ContainerFragment : Fragment() {
 
 
             button_open_child_fragment.setOnClickListener {
-                val childKey = key + count.toString()
+                val childKey = key + (count + 1).toString()
                 childFragmentManager.beginTransaction()
                     .replace(R.id.container_fragment, ChildFragment.newInstance(childKey), childKey)
                     .addToBackStack(childKey)
