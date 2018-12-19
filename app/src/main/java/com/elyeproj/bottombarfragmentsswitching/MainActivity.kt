@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createFragment(key: String, color: String) {
+        if (supportFragmentManager.findFragmentByTag(key) != null) return
         supportFragmentManager.beginTransaction()
             .replace(R.id.container_fragment, ContainerFragment.newInstance(key, color), key)
             .commit()
