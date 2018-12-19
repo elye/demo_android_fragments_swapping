@@ -26,10 +26,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        supportFragmentManager.fragments.forEach {
-            if (it != null && it.isVisible && it.childFragmentManager.backStackEntryCount > 0) {
-                it.childFragmentManager.popBackStack()
-                return
+        supportFragmentManager.fragments.forEach { fragment ->
+            if (fragment != null && fragment.isVisible) {
+                with(fragment.childFragmentManager) {
+                    if (backStackEntryCount > 0) {
+                        popBackStack()
+                        return
+                    }
+                }
             }
         }
         super.onBackPressed()
