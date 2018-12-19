@@ -11,7 +11,6 @@ import kotlinx.android.synthetic.main.fragment_container.*
 class ContainerFragment : Fragment() {
 
     companion object {
-        const val COUNT = "Count"
         const val KEY = "FragmentKey"
         const val COLOR = "FragmentColor"
         fun newInstance(key: String, color: String): Fragment {
@@ -28,7 +27,7 @@ class ContainerFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (savedInstanceState != null) {
-            count = savedInstanceState.getInt(COUNT)
+            count = childFragmentManager.backStackEntryCount
         }
         return inflater.inflate(R.layout.fragment_container, container, false)
     }
@@ -42,7 +41,6 @@ class ContainerFragment : Fragment() {
 
 
             button_open_child_fragment.setOnClickListener {
-                count++
                 val childKey = key + count.toString()
                 childFragmentManager.beginTransaction()
                     .replace(R.id.container_fragment, ChildFragment.newInstance(childKey), childKey)
@@ -50,10 +48,7 @@ class ContainerFragment : Fragment() {
                     .commit()
             }
         }
-    }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putInt(COUNT, count)
+        childFragmentManager.addOnBackStackChangedListener { count = childFragmentManager.backStackEntryCount }
     }
 }
