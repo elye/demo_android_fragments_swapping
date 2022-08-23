@@ -13,5 +13,9 @@ class EntryActivity : AppCompatActivity() {
         findViewById<Button>(R.id.button_conventional_swap).setOnClickListener {
             startActivity(Intent(this, MainConventionalActivity::class.java))
         }
+
+        findViewById<Button>(R.id.button_navigation_swap).setOnClickListener {
+            startActivity(Intent(this, MainNavigationActivity::class.java))
+        }
     }
 }
