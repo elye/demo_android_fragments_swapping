@@ -2,14 +2,15 @@ package com.elyeproj.bottombarfragmentsswitching
 
 import android.os.Bundle
 import androidx.annotation.IdRes
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import android.util.SparseArray
-import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_main.*
+import com.elyeproj.bottombarfragmentsswitching.common.ContainerFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 
-class MainActivity : AppCompatActivity() {
+
+class MainConventionalActivity : AppCompatActivity() {
 
     private var savedStateSparseArray = SparseArray<Fragment.SavedState>()
     private var currentSelectItemId = R.id.navigation_home
@@ -18,19 +19,19 @@ class MainActivity : AppCompatActivity() {
         const val SAVED_STATE_CURRENT_TAB_KEY = "CurrentTabKey"
     }
 
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    private val mOnNavigationItemSelectedListener = NavigationBarView.OnItemSelectedListener  { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
                 swapFragments(item.itemId, "Home", "#FFFF00")
-                return@OnNavigationItemSelectedListener true
+                return@OnItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
                 swapFragments(item.itemId, "Dashboard", "#FF00FF")
-                return@OnNavigationItemSelectedListener true
+                return@OnItemSelectedListener  true
             }
             R.id.navigation_notifications -> {
                 swapFragments(item.itemId, "Notifications", "#00FFFF")
-                return@OnNavigationItemSelectedListener true
+                return@OnItemSelectedListener true
             }
         }
         false
@@ -43,8 +44,9 @@ class MainActivity : AppCompatActivity() {
                 ?: savedStateSparseArray
             currentSelectItemId = savedInstanceState.getInt(SAVED_STATE_CURRENT_TAB_KEY)
         }
-        setContentView(R.layout.activity_main)
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        setContentView(R.layout.activity_main_conventional)
+        findViewById<BottomNavigationView>(R.id.navigation)
+            .setOnItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

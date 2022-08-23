@@ -1,11 +1,12 @@
-package com.elyeproj.bottombarfragmentsswitching
+package com.elyeproj.bottombarfragmentsswitching.common
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_child.*
+import android.widget.TextView
+import com.elyeproj.bottombarfragmentsswitching.R
 
 class ChildFragment : Fragment() {
 
@@ -27,7 +28,7 @@ class ChildFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
-            child_text_title.text = it.getString(KEY)
+            view.findViewById<TextView>(R.id.child_text_title).text = it.getString(KEY)
         }
     }
 }

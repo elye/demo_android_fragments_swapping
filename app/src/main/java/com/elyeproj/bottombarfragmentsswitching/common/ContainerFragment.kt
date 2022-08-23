@@ -1,4 +1,4 @@
-package com.elyeproj.bottombarfragmentsswitching
+package com.elyeproj.bottombarfragmentsswitching.common
 
 import android.graphics.Color
 import android.os.Bundle
@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_container.*
+import android.widget.Button
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.elyeproj.bottombarfragmentsswitching.R
 
 class ContainerFragment : Fragment() {
 
@@ -36,11 +39,12 @@ class ContainerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
             val key = it.getString(KEY)
-            text_title.text = key
-            container.setBackgroundColor(Color.parseColor(it.getString(COLOR)))
+            view.findViewById<TextView>(R.id.text_title).text = key
+            view.findViewById<ConstraintLayout>(R.id.container).setBackgroundColor(Color.parseColor(it.getString(
+                COLOR
+            )))
 
-
-            button_open_child_fragment.setOnClickListener {
+            view.findViewById<Button>(R.id.button_open_child_fragment).setOnClickListener {
                 val childKey = key + (count + 1).toString()
                 childFragmentManager.beginTransaction()
                     .replace(R.id.container_fragment, ChildFragment.newInstance(childKey), childKey)
