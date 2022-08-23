@@ -43,6 +43,8 @@ class MainConventionalActivity : AppCompatActivity() {
             savedStateSparseArray = savedInstanceState.getSparseParcelableArray(SAVED_STATE_CONTAINER_KEY)
                 ?: savedStateSparseArray
             currentSelectItemId = savedInstanceState.getInt(SAVED_STATE_CURRENT_TAB_KEY)
+        } else {
+            swapFragments(R.id.navigation_home, "Home", "#FFFF00")
         }
         setContentView(R.layout.activity_main_conventional)
         findViewById<BottomNavigationView>(R.id.navigation)
