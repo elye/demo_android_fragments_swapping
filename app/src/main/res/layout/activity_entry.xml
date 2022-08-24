@@ -17,13 +17,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:text="Navigation Component Multi Layer Fragment Swap"
+        android:text="Navigation Component XML Multi Layer Fragment Swap"
         android:id="@+id/button_navigation_swap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/button_navigation_code_swap"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_conventional_swap" />
+
+    <Button
+        android:text="Navigation Component Code Multi Layer Fragment Swap"
+        android:id="@+id/button_navigation_code_swap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_conventional_swap" />
+        app:layout_constraintTop_toBottomOf="@id/button_navigation_swap" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
